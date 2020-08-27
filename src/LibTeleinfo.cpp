@@ -224,7 +224,7 @@ ValueList * TInfo::valueAdd(char * name, char * value, uint8_t checksum, uint8_t
             // Do we have enought space to hold new value ?
             if (strlen(me->value) >= lgvalue ) {
               // Copy it
-              strlcpy(me->value, value , lgvalue + 1);
+              strncpy(me->value, value , lgvalue + 1);
               me->checksum = checksum ;
 
               // That's all
@@ -427,7 +427,7 @@ char * TInfo::valueGet(char * name, char * value)
         if (me->value) {
           // copy to dest buffer
           uint8_t lgvalue = strlen(me->value);
-          strlcpy(value, me->value , lgvalue + 1 );
+          strncpy(value, me->value , lgvalue + 1 );
           return ( value );
         }
       }
@@ -662,7 +662,7 @@ ValueList * TInfo::checkLine(char * pline)
     return NULL;
 
   // Get our own working copy
-  strlcpy( buff, pline, len+1);
+  strncpy( buff, pline, len+1);
 
   p = &buff[0];
   ptok = p;       // for sure we start with token name
